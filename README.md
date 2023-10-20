@@ -1,6 +1,8 @@
 # cloud_db_mgmt_pooling_migrations
 ## HHA 504 Homework Assignment 4C
 
+*Acquire hands-on expertise in overseeing a cloud-hosted MySQL database, with an emphasis on executing connection pooling and executing database migrations. This task will involve working with both Azure and Google Cloud Platform (GCP).*
+
 **The Setup and Configuration of Connection Pooling for Azure and GCP databases**
 
 **Describe the Database Schema Structure and Rationale**
