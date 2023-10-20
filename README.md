@@ -21,7 +21,7 @@
 
 7. Access Your Database: Once the deployment is complete, you can access your MySQL instance using tools like MySQL Workbench or the Azure portal.
 
-8. After instance was created, I added a database named "Alyssa."
+8. After the instance was created, I added a database named "Alyssa."
 
 ### **Creating a MySQL Database Instance on Google Cloud Platform (GCP):**
 
@@ -41,7 +41,9 @@
 
 8. Review and Create: Review your settings, and if they are correct, click the "Create" button to create your MySQL instance.
 
-9. After instance was created, I added a database named "Alyssa."
+9. After the instance was created, I added a database named "Alyssa."
+
+10. I then went back to the instance information on GCP, clicked on "Connections" then "Networking" and added a new network by inputting a name and network identifier.    
 
 ## **Describe the Database Schema Structure and Rationale**
 
