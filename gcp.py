@@ -10,8 +10,11 @@ pip install sqlalchemy alembic mysql-connector-python pymysql
 from sqlalchemy import create_engine, inspect, Column, Integer, String, Date, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
-from dotenv import load_dotenv
 import os
+# from dotenv import load_dotenv
+
+# load_dotenv()
+# databaseURL = os.getenv("DB_URL")
 
 Base = declarative_base()
 
@@ -41,10 +44,11 @@ class MedicalRecord(Base):
 
 
 ### Part 2 - initial sqlalchemy-engine to connect to db:
-DATABASE_URL = "mysql+pymysql://root:ahi-admin-2023@34.148.90.112"
+
+DATABASE_URL = "mysql+pymysql://root:ahi-admin-2023@34.148.90.112/alyssa"
 
 engine = create_engine(DATABASE_URL,
-                            connect_args={'ssl': {'ssl-mode': 'preffered'}},
+                            connect_args={'ssl': {'ssl-mode': 'preferred'}},
                             )
 
 ## Test connection
