@@ -49,9 +49,9 @@
 
 This is a database schema for storing information about patients and their medical records using SQLAlchemy.
 
-**Tables:**
+### **Tables:**
 
-Patients (patients table):
+**Patients (patients table):**
 
 id: An auto-incremented integer field serving as the primary key.
 
@@ -65,7 +65,7 @@ gender: A string field (up to 10 characters) representing the patient's gender.
 
 contact_number: A string field (up to 15 characters) for the patient's contact number. This field is nullable, meaning it's not required.
 
-Medical Records (medical_records table):
+**Medical Records (medical_records table):**
 
 id: An auto-incremented integer field serving as the primary key.
 
@@ -92,7 +92,8 @@ The Base.metadata.create_all(engine) statement creates the database tables using
 **Rationale:**
 The database schema appears to be designed for a healthcare management system. The structure is simple, with two main tables: one for patients and another for their medical records. 
 
-Rationale for some of the design choices:
+**Rationale for some of the design choices:**
+
 Patients Table: This table stores information about patients, including their personal details (name, date of birth, gender) and contact information. The design allows for the management of patients' basic information.
 
 Medical Records Table: This table is associated with patients through a foreign key relationship. It stores details of medical records, including diagnosis, treatment, admission date, and discharge date. The design allows for the tracking of patients' medical history and treatment.
