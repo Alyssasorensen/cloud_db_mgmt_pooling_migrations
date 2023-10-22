@@ -25,7 +25,7 @@ conn_string = (
 db_engine = create_engine(conn_string, echo=False)
 fake = Faker()
 
-def insert_fake_data(engine, num_patients=30):
+def insert_fake_data(engine, num_patients=30, num_medical_records=20): # Noqa: E501
     # Start a connection
     with engine.connect() as connection:
         # Insert fake data into patients

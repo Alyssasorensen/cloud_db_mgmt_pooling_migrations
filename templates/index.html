@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MySQL Data</title>
+</head>
+<body>
+    <h1>Medical Records</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>patient_id</th>
+                <th>diagnosis/th>
+                <th>treatment/th>
+                <th>admission_date/th>
+                <th>discharge_date/th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in medical_records %}
+            <tr>
+                <td>{{ row.patient_id }}</td>
+                <td>{{ row.diagnosis }}</td>
+                <td>{{ row.treatment }}</td>
+                <td>{{ row.admission_date }}</td>
+                <td>{{ row.discharge_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Patients</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>date_of_birth</th>
+                <th>gender</th>
+                <th>contact_number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data_patient_medications %}
+            <tr>
+                <td>{{ row.first_name }}</td>
+                <td>{{ row.last_name }}</td>
+                <td>{{ row.date_of_birth }}</td>
+                <td>{{ row.gender }}</td>
+                <td>{{ row.contact_number }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
