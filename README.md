@@ -45,6 +45,36 @@
 
 10. I then went back to the instance information on GCP, clicked on "Connections" then "Networking" and added a new network by inputting a name and network identifier.    
 
+### **Changing connection pool settings like max_connections and connect_timeout for an Azure MySQL Database is done by configuring the database server settings within the Azure portal. Here's how you can change these settings directly in Azure:**
+
+1. Sign in to the Azure portal (https://portal.azure.com).
+
+2. Locate the MySQL Database:
+
+    In the Azure portal, navigate to your Azure MySQL Database.
+
+3. Configure Connection Pool Settings:
+
+    a. On the left-hand menu, under "Settings," click on "Connection security."
+
+    b. You will see options for configuring connection pool settings. Specifically, you can configure these settings:
+
+        Max Connections: This setting defines the maximum number of allowed concurrent connections to your database. You can adjust this based on your needs. For our database input "20."
+
+        Connection Timeout: This setting defines the maximum time a connection request is allowed to wait for a connection to be available. It's specified in seconds. For our database input "3."
+
+4. Save Changes:
+
+    Make the desired changes to max_connections and connect_timeout.
+
+5. Apply Configuration:
+
+    Save your changes. Depending on the Azure portal interface, you might need to click an "Apply" or "Save" button to confirm your configuration changes.
+
+6. Review and Test:
+
+    After making the changes, monitor the performance of your application to ensure that the adjusted connection pool settings meet your requirements.
+
 ## **Describe the Database Schema Structure and Rationale**
 
 This is a database schema for storing information about patients and their medical records using SQLAlchemy.

@@ -7,7 +7,7 @@ pip install sqlalchemy alembic mysql-connector-python pymysql
 ## Part 1 - Define SQLAlchemy models for patients and their medical records:
 ### this file below could always be called db_schema.py or something similar
 
-from sqlalchemy import create_engine, inspect, Column, Integer, String, Date, ForeignKey
+from sqlalchemy import create_engine, inspect, Column, Integer, String, Date, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 import os
@@ -27,6 +27,7 @@ class Patient(Base):
     date_of_birth = Column(Date, nullable=False)
     gender = Column(String(10), nullable=False)
     contact_number = Column(String(15))
+    is_alive = Column(Boolean, nullable=False) 
 
     records = relationship('MedicalRecord', back_populates='patient')
 
