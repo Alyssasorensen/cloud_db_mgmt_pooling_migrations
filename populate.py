@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from faker import Faker
 import random
 
@@ -21,8 +21,10 @@ conn_string = (
     f"?charset={DB_CHARSET}"
 )
 
+my_connection = 'mysql+pymysql://root:ahi-admin-2023@34.148.90.112/alyssa'
+
 # Create a database engine
-db_engine = create_engine(conn_string, echo=False)
+db_engine = create_engine(my_connection, echo=False)
 fake = Faker()
 
 def insert_fake_data(engine, num_patients=30, num_medical_records=20): # Noqa: E501
@@ -33,7 +35,8 @@ def insert_fake_data(engine, num_patients=30, num_medical_records=20): # Noqa: E
             first_name = fake.first_name()
             last_name = fake.last_name()
             date_of_birth = fake.date_of_birth(minimum_age=10, maximum_age=90)
-            connection.execute(f"""INSERT INTO patients (first_name, last_name, date_of_birth) VALUES ('{first_name}', '{last_name}', '{date_of_birth}')""") # Noqa: E501
+            query = text(f"""INSERT INTO patients (first_name, last_name, date_of_birth, gender) VALUES ('{first_name}', '{last_name}', '{date_of_birth}', 'male')""")
+            connection.execute(query) # Noqa: E501
 
 if __name__ == "__main__":
     insert_fake_data(db_engine)
