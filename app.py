@@ -24,6 +24,9 @@ def get_patient():
     session.close()
     return f"Patient: {patient}"
 
+if __name__ == '__main__':
+    app.run(debug=True, port=5005)
+
 #text('SELECT * FROM patients')
 # # GCP type 2
 # from flask import Flask, request, jsonify
@@ -52,10 +55,6 @@ def get_patient():
 #     else:
 #         return jsonify({"message": "Patient not found"}), 404
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5005)
-
-
 # # GC SQL type
 # from flask import Flask
 # from sqlalchemy import create_engine
@@ -77,5 +76,3 @@ if __name__ == '__main__':
 #     patient = session.execute("SELECT * FROM patients WHERE id=:patient_id", {"patient_id": patient_id}).fetchone()
 #     session.close()
 #     return f"Patient: {patient}"
-
-
