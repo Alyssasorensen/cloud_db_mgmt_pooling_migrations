@@ -77,3 +77,5 @@ if __name__ == '__main__':
 #     patient = session.execute("SELECT * FROM patients WHERE id=:patient_id", {"patient_id": patient_id}).fetchone()
 #     session.close()
 #     return f"Patient: {patient}"
+
+
