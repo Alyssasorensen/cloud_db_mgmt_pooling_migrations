@@ -134,6 +134,79 @@ This schema is a starting point, and additional tables or fields could be added 
 
 ## **Steps and Challenges Encountered During the Database Migration Process**
 
-## **Screenshots Demonstrating the Flask application's Interaction with Both Databases**
+### **Steps:**
 
-## **If you encounter any errors or challenges, document them thoroughly, providing screenshots, descriptions of your troubleshooting steps, and potential root causes**
+1. Initialize Alembic for migrations:
+
+```
+alembic init migrations
+```
+
+2. Edit the alembic.ini file to point to your database:
+```
+sqlalchemy.url = mysql+mysqlconnector://username:password@host/database_name
+```
+
+3. In the env.py file, specify where your database models are located:
+
+```
+from db_schema import Base
+target_metadata = Base.metadata
+```
+
+4. Create a migration: 
+
+```
+alembic revision --autogenerate -m "create tables"
+```
+
+5. Apply the migration:
+
+```
+alembic upgrade head
+```
+
+6. To view the migration history or see the raw SQL executed during migration, you can use the following commands:
+
+    View history:
+
+    ```
+    alembic history
+    ```
+
+    View SQL:
+
+    ```
+    alembic upgrade head --sql
+    ```
+
+    Save SQL to a file:
+
+    ```
+    alembic upgrade head --sql > migration.sql
+    ```
+
+7. Check your database to confirm the changes.
+
+8. Roll back (if needed):
+
+To revert to a previous migration version, use the downgrade command. Here are two examples:
+
+Roll back to a specifc target revision:
+
+```
+alembic downgrade <target_revision>
+```
+
+Roll back to the previous version:
+
+```
+alembic downgrade -1
+```
+
+### **Challenges:**
+
+I did not experience any challenges for the database migration process. However, when I attempted to access my Flask application, I faced a few difficulties. The first hurdle was configuring the development environment, ensuring that Flask and its dependencies were correctly installed. This involved managing virtual environments and handling Python package versions.
+Furthermore, I encountered challenges related to routing and URL configurations within my Flask application. Correctly defining routes and ensuring that they match the expected URLs made it tricky especially when using Azure and GCP. Debugging errors or misconfigurations in route handlers took some time before finally getting it correct. 
+Deployment was another aspect that presented some difficulties. When deploying the Flask application, operational errors and attribute errors kept appearing. The reason for this was because the data was not properly inserted into the tables in MySQL Workbench. Therefore, there was no data to display in the Flask application. Once the data was inserted correctly, I configured the app route correctly so that it corresponded to my HTML file, and then I was able to view the tables with data. 
+
