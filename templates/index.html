@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>MySQL Data</title>
@@ -52,4 +52,95 @@
         </tbody>
     </table>
 </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MySQL Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #333;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: rgba(0, 183, 255, 0.452);
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Medical Records</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>patient_id</th>
+                <th>diagnosis</th>
+                <th>treatment</th>
+                <th>admission_date</th>
+                <th>discharge_date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in medical_records %}
+            <tr>
+                <td>{{ row.patient_id }}</td>
+                <td>{{ row.diagnosis }}</td>
+                <td>{{ row.treatment }}</td>
+                <td>{{ row.admission_date }}</td>
+                <td>{{ row.discharge_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Patients</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>date_of_birth</th>
+                <th>gender</th>
+                <th>contact_number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in patients %}
+            <tr>
+                <td>{{ row.first_name }}</td>
+                <td>{{ row.last_name }}</td>
+                <td>{{ row.date_of_birth }}</td>
+                <td>{{ row.gender }}</td>
+                <td>{{ row.contact_number }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
 </html>
+
