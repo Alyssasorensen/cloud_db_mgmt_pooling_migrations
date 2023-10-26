@@ -1,5 +1,5 @@
 #GCP
-from flask import Flask, request
+from flask import Flask, request, render_template
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import declarative_base
@@ -13,16 +13,26 @@ my_connection = 'mysql+pymysql://root:ahi-admin-2023@34.148.90.112/alyssa'
 engine = create_engine(my_connection, pool_size=5, max_overflow=10)
 Session = sessionmaker(bind=engine)
 
-@app.route('/')
-# @app.route('/get_patient/<patient_id>')
-def get_patient():
+# Route to get a list of patients
+@app.route('/patients')
+def get_patients():
     session = Session()
-    # patient = session.query(Patient).filter_by(id=patient_id).first()
-    # patient = session.execute("SELECT * FROM patients WHERE id=:patient_id", {"patient_id": patient_id}).fetchone()
-    query = text("SELECT * FROM patients")
-    patient = session.execute(query).fetchone()
-    session.close()
-    return f"Patient: {patient}"
+    # Query the database to get a list of patients
+    patients = session.execute(text("SELECT * FROM patients")).fetchall()
+    medical_records = session.execute(text("SELECT * FROM medical_records")).fetchall()
+    # Format and return the patient information
+    # patient_info = "\n".join([f"Patient: {patient.first_name} {patient.last_name}" for patient in patients])
+    return render_template('index.html', patients=patients, medical_records=medical_records)
+
+# Route to get a list of medical records
+@app.route('/medical_records')
+def get_medical_records():
+    # Query the database to get a list of medical records
+    medical_records = engine.execute("SELECT * FROM medical_records").fetchall()
+    
+    # Format and return the medical record information
+    record_info = "\n".join([f"Medical Record: Patient ID {record.patient_id}, Diagnosis: {record.diagnosis}" for record in medical_records])
+    return record_info
 
 if __name__ == '__main__':
     app.run(debug=True, port=5005)
