@@ -9,10 +9,10 @@
         <thead>
             <tr>
                 <th>patient_id</th>
-                <th>diagnosis/th>
-                <th>treatment/th>
-                <th>admission_date/th>
-                <th>discharge_date/th>
+                <th>diagnosis</th>
+                <th>treatment</th>
+                <th>admission_date</th>
+                <th>discharge_date</th>
             </tr>
         </thead>
         <tbody>
@@ -40,7 +40,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for row in data_patient_medications %}
+            {% for row in patients %}
             <tr>
                 <td>{{ row.first_name }}</td>
                 <td>{{ row.last_name }}</td>

@@ -1,6 +1,6 @@
-from flask import Flask, request
-from sqlalchemy import create_engine, inspect, Column, Integer, String, Date, ForeignKey
-from sqlalchemy.orm import relationship
+from flask import Flask, request, render_template
+from sqlalchemy import create_engine, inspect, Column, Integer, String, Date, ForeignKey, text
+from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
@@ -8,8 +8,11 @@ Base = declarative_base()
 app = Flask(__name__)
 
 # Database setup
-DATABASE_URL = "mysql+mysqlconnector://alyssa:ahi-admin-2023@migrations-hw.mysql.database.azure.com/alyssa"
-engine = create_engine(DATABASE_URL)
+engine = create_engine("mysql+pymysql://alyssa:ahi-admin-2023@migrations-hw.mysql.database.azure.com/alyssa",
+                         connect_args={'ssl': {'ssl-mode': 'preferred'}},
+                         )
+
+Session = sessionmaker(bind=engine)
 
 inspector = inspect(engine)
 
@@ -38,12 +41,13 @@ class MedicalRecord(Base):
 # Route to get a list of patients
 @app.route('/patients')
 def get_patients():
+    session = Session()
     # Query the database to get a list of patients
-    patients = engine.execute("SELECT * FROM patients").fetchall()
-    
+    patients = session.execute(text("SELECT * FROM patients")).fetchall()
+    medical_records = session.execute(text("SELECT * FROM medical_records")).fetchall()
     # Format and return the patient information
-    patient_info = "\n".join([f"Patient: {patient.first_name} {patient.last_name}" for patient in patients])
-    return patient_info
+    # patient_info = "\n".join([f"Patient: {patient.first_name} {patient.last_name}" for patient in patients])
+    return render_template('index.html', patients=patients, medical_records=medical_records)
 
 # Route to get a list of medical records
 @app.route('/medical_records')
@@ -56,7 +60,7 @@ def get_medical_records():
     return record_info
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5005)
 
 
 
